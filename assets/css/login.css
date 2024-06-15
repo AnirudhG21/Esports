@@ -1,0 +1,429 @@
+/* Body */
+
+* {
+  cursor: pointer;
+}
+
+body {
+  color: white;
+  margin: 0;
+  overflow: hidden;
+  height: 100vh;
+  cursor: pointer;
+}
+/*Back button*/
+.back-button {
+  --border-color: linear-gradient(-45deg, #5d5d5d, #c2c2c2, #dddddd);
+  --border-width: 0.125em;
+  --curve-size: 0.5em;
+  --blur: 30px;
+  --bg: #ffffff;
+  --color: #000000;
+  color: var(--color);
+  /* use position: relative; so that BG is only for .btn */
+  top: 40px;
+  left: 30px;
+  cursor: pointer;
+  z-index: 999;
+  position: fixed;
+  isolation: isolate;
+  display: inline-grid;
+  place-content: center;
+  padding: 1em 1.5em;
+  font-family: "Orbitron", sans-serif;
+  font-size: 10px;
+  font-weight: bold;
+  border: 0;
+  text-transform: uppercase;
+  box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.6);
+  clip-path: polygon(
+    /* Top-left */ 0% var(--curve-size),
+    var(--curve-size) 0,
+    /* top-right */ 100% 0,
+    100% calc(100% - var(--curve-size)),
+    /* bottom-right 1 */ calc(100% - var(--curve-size)) 100%,
+    /* bottom-right 2 */ 0 100%
+  );
+  transition: color 250ms;
+}
+
+.back-button::after,
+.back-button::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+}
+
+.back-button::before {
+  background: var(--border-color);
+  background-size: 300% 300%;
+  animation: move-bg7234 5s ease infinite;
+  z-index: -2;
+}
+
+@keyframes move-bg7234 {
+  0% {
+    background-position: 31% 0%;
+  }
+
+  50% {
+    background-position: 70% 100%;
+  }
+
+  100% {
+    background-position: 31% 0%;
+  }
+}
+
+.back-button::after {
+  background: var(--bg);
+  z-index: -1;
+  clip-path: polygon(
+    /* Top-left */ var(--border-width)
+      calc(var(--curve-size) + var(--border-width) * 0.5),
+    calc(var(--curve-size) + var(--border-width) * 0.5) var(--border-width),
+    /* top-right */ calc(100% - var(--border-width)) var(--border-width),
+    calc(100% - var(--border-width))
+      calc(100% - calc(var(--curve-size) + var(--border-width) * 0.5)),
+    /* bottom-right 1 */
+      calc(100% - calc(var(--curve-size) + var(--border-width) * 0.5))
+      calc(100% - var(--border-width)),
+    /* bottom-right 2 */ var(--border-width) calc(100% - var(--border-width))
+  );
+  transition: clip-path 500ms;
+}
+
+.back-button:hover::after,
+.back-button:focus::after {
+  clip-path: polygon(
+    /* Top-left */ calc(100% - var(--border-width))
+      calc(100% - calc(var(--curve-size) + var(--border-width) * 0.5)),
+    calc(100% - var(--border-width)) var(--border-width),
+    /* top-right */ calc(100% - var(--border-width)) var(--border-width),
+    calc(100% - var(--border-width))
+      calc(100% - calc(var(--curve-size) + var(--border-width) * 0.5)),
+    /* bottom-right 1 */
+      calc(100% - calc(var(--curve-size) + var(--border-width) * 0.5))
+      calc(100% - var(--border-width)),
+    /* bottom-right 2 */
+      calc(100% - calc(var(--curve-size) + var(--border-width) * 0.5))
+      calc(100% - var(--border-width))
+  );
+  transition: 200ms;
+}
+
+.back-button:hover,
+.back-button:focus {
+  color: #fff;
+}
+
+/*Container*/
+.container {
+  display: flex;
+  justify-content: center;
+  cursor: pointer;
+  align-items: center;
+  flex-direction: column; /* Updated to column layout */
+  height: 100%;
+}
+
+.form {
+  backdrop-filter: blur(15px);
+  background: rgba(0, 0, 0, 0.2);
+  padding: 20px;
+  border-radius: 12px; /* Rounded corners */
+  box-shadow: 20px 20px 80px rgba(111, 111, 111, 0.792); /* Slight box shadow */
+  width: 400px; /* Adjusted width */
+  display: inline-block;
+  border: 2px solid #000000; /* Border for added separation */
+  cursor: pointer;
+  font-size: 12px;
+  font-family: "Orbitron", sans-serif;
+}
+
+input {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  box-sizing: border-box;
+  background: white;
+  border: 1px solid #000000; /* Input border */
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+#loginButton {
+  font-size: 15px;
+  padding-left: 10px;
+  color: rgb(0, 0, 0);
+  transition: color 0.3s ease; /* adds a smooth transition effect */
+}
+
+#loginButton:hover {
+  color: rgb(94, 94, 94);
+}
+
+button {
+  width: 100%;
+  padding: 12px;
+  background: linear-gradient(
+    rgb(0, 0, 0),
+    rgb(121, 121, 121)
+  ); /* Darker purple shade */
+  color: #fff;
+  border: 3px solid black;
+  border-radius: 6px;
+  transition: background 0.5s ease; /* Adjusted transition properties */
+  cursor: pointer;
+  font-size: 12px;
+  font-family: "Orbitron", sans-serif;
+}
+
+button:hover {
+  background: linear-gradient(
+    rgb(101, 101, 101),
+    rgb(210, 210, 210)
+  ); /* Darker purple shade on hover */
+  transition: background 0.5s ease; /* Added transition properties */
+}
+
+.continue-text {
+  margin-left: 150px;
+  font-size: 14px;
+  color: white; /* Light purple color */
+  margin-bottom: 00px;
+}
+
+.line {
+  width: 100%;
+  height: 2px;
+  background-color: #000000; /* Light purple color */
+  margin-bottom: 20px;
+}
+
+.social-buttons {
+  margin-top: 10px;
+  display: flex;
+  justify-content: center; /* Center the social buttons */
+  align-items: center;
+}
+
+.social-buttons img {
+  width: 30px; /* Adjust the width as needed */
+  height: 30px;
+  margin: 0 10px; /* Adjust the spacing between images */
+  transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.social-buttons img:hover {
+  transform: scale(1.2); /* Enlargement on hover */
+  filter: brightness(1.5); /* Increased glow on hover */
+  box-shadow: 0 0 20px rgba(107, 107, 107, 0.8); /* Purple tint glow on hover */
+}
+
+.form p span {
+  color: #ffffff; /* Darker purple shade for links */
+  margin-left: 20px;
+  transition: color 0.3s ease;
+}
+
+.form p span:hover {
+  color: #606060; /* Even darker color on hover */
+}
+
+/* Country Code and number */
+.mobile-container {
+  display: flex;
+  align-items: center;
+}
+
+#countryCode {
+  margin-right: 5px; /* Adjust the margin as needed */
+}
+
+.required-star {
+  color: red;
+  margin-left: 2px;
+}
+
+.country-code-dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+#countryCodeInput {
+  padding: 5px;
+  height: 38px;
+  width: 50px;
+}
+
+#countryCodesList {
+  display: none;
+  position: absolute;
+  width: 150px;
+  box-sizing: border-box;
+  border: 1px solid #cccccc73;
+  margin-top: 5px;
+  overflow-y: auto; /* Enable vertical scrolling */
+  max-height: 130px; /* Limit the maximum height of the dropdown list */
+  list-style: none;
+  padding: 0;
+  background-color: rgb(255, 255, 255); /* Set the background color to white */
+}
+
+#countryCodesList li {
+  padding: 5px;
+  color: rgb(0, 0, 0); /* Set the font color to black */
+  transition: background-color 0.3s; /* Add transition effect for smooth color change */
+}
+
+#countryCodesList li:hover {
+  background-color: #b9b9b9; /* Set the background color on hover */
+}
+
+/*Password*/
+.password-container {
+  position: relative;
+}
+
+#eyeButton {
+  position: absolute;
+  top: 35%; /* Center vertically */
+  right: 20px; /* Adjusted right position */
+  transform: translateY(-50%); /* Center vertically */
+  width: 10px;
+  height: 10px;
+  padding: 2px; /* Adjusted padding for a tiny button */
+  background-color: transparent;
+  border: none;
+  font-size: 8px; /* Adjusted font size */
+  cursor: pointer;
+  background: none;
+  color: #000000;
+}
+
+/*Toggle*/
+.toggle-switch {
+  position: relative;
+  bottom: 1em;
+  display: inline-block;
+  width: 40px;
+  height: 20px;
+  cursor: pointer;
+}
+
+.toggle-switch input[type="checkbox"] {
+  display: none;
+}
+
+.toggle-switch-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #ddd;
+  border-radius: 10px;
+  box-shadow: inset 0 0 0 2px #ccc;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.toggle-switch-handle {
+  position: absolute;
+  top: 2.5px;
+  left: 2.5px;
+  width: 15px;
+  height: 15px;
+  background-color: #fff;
+  border-radius: 50%;
+  box-shadow: 0 1px 2.5px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease-in-out;
+}
+
+.toggle-switch::before {
+  content: "";
+  position: absolute;
+  top: -12.5px;
+  right: -17.5px;
+  font-size: 6px;
+  font-weight: bold;
+  color: #aaa;
+  text-shadow: 1px 1px #fff;
+  transition: color 0.3s ease-in-out;
+}
+
+.toggle-switch input[type="checkbox"]:checked + .toggle-switch-handle {
+  transform: translateX(22.5px);
+  box-shadow: 0 1px 2.5px rgba(0, 0, 0, 0.2), 0 0 0 1.5px #590381;
+}
+
+.toggle-switch input[type="checkbox"]:checked + .toggle-switch-background {
+  background: linear-gradient(rgb(253, 253, 253), rgb(55, 0, 55));
+  box-shadow: inset 0 0 0 1px rgb(122, 122, 122);
+}
+
+.toggle-switch input[type="checkbox"]:checked + .toggle-switch:before {
+  content: "On";
+  color: #000000;
+  right: -7.5px;
+}
+
+.toggle-switch
+  input[type="checkbox"]:checked
+  + .toggle-switch-background
+  .toggle-switch-handle {
+  transform: translateX(20px);
+}
+
+/*socials*/
+.social-buttons {
+  cursor: pointer;
+  display: flex;
+  box-sizing: border-box;
+  list-style: none;
+  justify-content: center;
+  align-items: center;
+  width: 100%; /* Adjust the width as needed */
+}
+
+.social-button {
+  display: flex;
+  font-size: 2em;
+  padding: 10px;
+  margin: 0 10px;
+  background: #000;
+  color: #ccc;
+  border-radius: 7.5px;
+  box-shadow: 0.5px 0.5px 0.5px black, 2.5px 2.5px 3px black,
+    inset 0.5px 0.5px 2.5px black, inset 0.5px 0.5px 2.5px black,
+    inset 0.5px 0.5px 2.5px black, inset 0.5px 0.5px 2.5px black;
+  text-shadow: 0px 0px 12.5px blue, 0px 0px 25px blue, 0px 0px 37.5px blue,
+    0px 0px 50px blue;
+  animation: animate 3s linear infinite;
+  cursor: pointer;
+}
+
+.social-button:hover {
+  background: #333; /* Change the color on hover */
+}
+
+@keyframes animate {
+  from {
+    filter: hue-rotate(0deg);
+  }
+  to {
+    filter: hue-rotate(360deg);
+  }
+}
+
+#fb {
+  animation-delay: 0.3s;
+}
+
+#Mics {
+  animation-delay: 0.6s;
+}
+
+#Gma {
+  animation-delay: 0.9s;
+}
